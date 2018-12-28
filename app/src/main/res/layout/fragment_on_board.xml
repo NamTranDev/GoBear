@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="view"
+                type="dev.tran.nam.gobear.view.splash.onboard.OnBoardFragment"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.splash.onboard.OnBoardFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/positive_10dp"
+                android:text="@string/text_skip"
+                android:textSize="@dimen/text_size_12sp"
+                android:onClick="@{() -> view.goToAuthen()}"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/sfprotext_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/positive_15dp"
+                android:layout_marginTop="@dimen/positive_5dp"
+                app:layout_constraintTop_toTopOf="parent" android:id="@+id/appCompatTextView"/>
+
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/positive_45dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.tabs.TabLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tab_dot"
+                app:layout_constraintBottom_toBottomOf="@id/viewpager"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

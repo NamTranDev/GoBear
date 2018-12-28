@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">GoBear</string>
+    <string name="text_skip">Skip</string>
+    <string name="onboard_title">GoBear</string>
+    <string name="onboard_description">Pellentesque quam est, auctor ut neque ac. lacinla posuere niss. Nunc enim
+        mauris. sagitlis sed tortor eu, tristique erat. Donec consectetur euismod sem vel laoreet. Donec vitae
+        neque rutrum lectus faucibus aliquet. Nam vel odio vitae diam venenatis facshsis.\n\n\nQuisque imperthet pellentesque orci a sodales. Veslibulum ante upsum pnmis in faucibus orci luctus et ult►ces
+        posuere cublha Curae: Sed cursus nitati non ultncies aliquam. Aenean egestas auctor ipsum. at ullamcorper sapien
+        eleifend eu. Sed gravida mauris eleifend ultricies. Lorem ipsum dolor sit arnet. consectetur adipiscing eht.\n\n\nUt vel hbero eu mauris convallis condimentum nec nisl. Nulla auctor odio in ullamcorper congue. Quasque
+        venenaijs ac dui quss prenum.
+    </string>
+    <string name="authen_hint_user">Username</string>
+    <string name="authen_hint_password">Password</string>
+    <string name="authen_text_login">Login</string>
+    <string name="authen_text_remember_me">Remember me</string>
+</resources>
