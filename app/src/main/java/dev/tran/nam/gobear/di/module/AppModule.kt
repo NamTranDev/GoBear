@@ -5,6 +5,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.support.AndroidSupportInjectionModule
 import dev.tran.nam.gobear.view.AppState
+import dev.tran.nam.gobear.view.splash.SplashActivity
+import dev.tran.nam.gobear.view.splash.SplashActivityModule
 import nam.tran.domain.di.DataModule
 import javax.inject.Singleton
 
@@ -16,12 +18,21 @@ abstract class AppModule {
 
     @Binds
     @Singleton
-    internal abstract/*
+    /*
      * Singleton annotation isn't necessary since Application instance is unique but is here for
      * convention. In general, providing Activity, Fragment, BroadcastReceiver, etc does not require
      * them to be scoped since they are the components being injected and their instance is unique.
      *
      * However, having a scope annotation makes the module easier to read. We wouldn't have to look
      * at what is being provided in order to understand its scope.
-     */ fun application(app: AppState): Application
+     */
+    internal abstract fun application(app: AppState): Application
+
+    /**
+    * Provides the injector for the [SplashActivityModule], which has access to the dependencies
+    * provided by this application instance (singleton scoped objects).
+    */
+    @tran.nam.core.di.inject.PerActivity
+    @dagger.android.ContributesAndroidInjector(modules = [SplashActivityModule::class])
+    internal abstract fun injectorSplashActivity(): SplashActivity
 }

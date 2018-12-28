@@ -1,39 +1,20 @@
 package dev.tran.nam.gobear.view.splash
 
-import androidx.databinding.DataBindingUtil
-import android.os.Bundle
-import android.os.Handler
 import dev.tran.nam.gobear.R
-import dev.tran.nam.gobear.databinding.ActivitySplashBinding
-import tran.nam.core.view.BaseActivity
+import dev.tran.nam.gobear.view.splash.onboard.OnBoardFragment
+import tran.nam.core.view.BaseActivityWithFragment
+import tran.nam.core.view.BaseFragment
+import tran.nam.util.createNewFragment
 
-class SplashActivity : BaseActivity() {
-
-    private var mViewDataBinding: ActivitySplashBinding? = null
-    private var handler: Handler? = null
-    private var runnable: Runnable? = object : Runnable {
-        override fun run() {
-
-        }
-    }
+class SplashActivity : BaseActivityWithFragment() {
 
     override fun layoutId(): Int {
         return R.layout.activity_splash
     }
 
-    override fun init(savedInstanceState: Bundle?) {
-        super.init(savedInstanceState)
+    override val fragments: Array<BaseFragment>
+        get() = arrayOf(createNewFragment<OnBoardFragment>(this))
 
-        mViewDataBinding = DataBindingUtil.setContentView(this, layoutId())
-
-        handler = Handler()
-        handler!!.postDelayed(runnable, 3000)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        handler!!.removeCallbacks(runnable)
-        handler = null
-        runnable = null
-    }
+    override val contentLayoutId: Int
+        get() = R.id.splash_container
 }
