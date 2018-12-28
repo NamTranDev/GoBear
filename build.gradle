@@ -1,14 +1,50 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.10'
+    // Define versions in a single place
+    ext {
+        android = '3.2.1'
+        kotlin_version = '1.3.0'
+
+        compileSdkVersion = 28
+        minSdkVersion = 19
+        targetSdkVersion = 28
+
+        multidex = '2.0.1'
+
+        appcompat = '1.0.2'
+        material = "1.1.0-alpha02"
+        core_ktx = "1.1.0-alpha03"
+        vectordrawable = "1.0.1"
+        constraint_layout = '2.0.0-alpha2'
+        recyclerview = "1.0.0"
+        progress_loading = '2.1.3'
+        glide = "4.8.0"
+
+        dagger = '2.18'
+        lifecycle = '2.0.0'
+        room = '2.1.0-alpha03'
+        retrofit2 = '2.3.0'
+        okhttp3 = '3.9.0'
+        paging = "2.1.0-rc01"
+        sqlcipher = "4.0.1@aar"
+
+        runner = "1.1.0"
+        espresso = "3.1.0"
+        junit = "4.12"
+
+        java_version = JavaVersion.VERSION_1_8
+    }
+
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "com.android.tools.build:gradle:3.2.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build.jetifier:jetifier-processor:1.0.0-beta02'
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
