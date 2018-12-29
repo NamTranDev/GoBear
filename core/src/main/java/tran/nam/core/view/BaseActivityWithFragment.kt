@@ -32,4 +32,12 @@ abstract class BaseActivityWithFragment : BaseActivityInjection(), IFragmentProv
     fun popToRoot() {
         mFragmentHelper?.popFragmentToRoot()
     }
+
+    override fun onBackPressed() {
+        mFragmentHelper?.run {
+            if (!this.popFragment()){
+                super.onBackPressed()
+            }
+        }
+    }
 }

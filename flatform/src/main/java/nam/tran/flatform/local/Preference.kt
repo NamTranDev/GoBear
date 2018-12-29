@@ -8,8 +8,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class Preference @Inject
-internal constructor(mApp: Application) : IPreference {
+open class Preference @Inject
+internal constructor(mApp: Context) : IPreference {
 
     private val mPref: SharedPreferences
 
@@ -23,5 +23,14 @@ internal constructor(mApp: Application) : IPreference {
          * normal configurations
          */
         private val SHARED_REFERENCE_NAME = "Application Config"
+        private val AUTHENTICATION = "Authentication"
+    }
+
+    override fun login(isRemember: Boolean) {
+        mPref.edit().putBoolean(AUTHENTICATION,isRemember).apply()
+    }
+
+    override fun isLogin(): Boolean {
+        return mPref.getBoolean(AUTHENTICATION,false)
     }
 }

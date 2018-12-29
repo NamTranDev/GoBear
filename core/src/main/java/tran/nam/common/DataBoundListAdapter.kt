@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import android.view.ViewGroup
-import nam.tran.domain.executor.AppExecutors
+import nam.tran.flatform.executor.AppExecutors
 
 /**
  * A generic RecyclerView adapter that uses Data Binding & DiffUtil.

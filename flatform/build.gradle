@@ -30,7 +30,6 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation "junit:junit:$rootProject.junit"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //room sql
@@ -46,19 +45,24 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp3"
 
     //dagger
-    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
     api "com.google.dagger:dagger:$rootProject.dagger"
     api "com.google.dagger:dagger-android:$rootProject.dagger"
     api "com.google.dagger:dagger-android-support:$rootProject.dagger"
-
     api "androidx.paging:paging-runtime:$rootProject.paging"
 
     //live data
     api "androidx.lifecycle:lifecycle-runtime:$rootProject.lifecycle"
     api "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycle"
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycle"
-
     implementation "net.zetetic:android-database-sqlcipher:$rootProject.sqlcipher"
+    api project(':domain')
 
+    testImplementation "android.arch.core:core-testing:1.1.1"
+    testImplementation 'androidx.test:runner:1.1.1'
+    testImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:2.22.0'
 }

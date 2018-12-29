@@ -1,19 +1,18 @@
 package dev.tran.nam.gobear.view.splash.onboard
 
-import dev.tran.nam.gobear.R
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import androidx.databinding.DataBindingUtil
+import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentOnBoardBinding
-
+import dev.tran.nam.gobear.view.splash.authen.AuthenFragment
 import tran.nam.core.view.BaseFragmentInjection
+import tran.nam.util.createNewFragment
 
-class OnBoardFragment : BaseFragmentInjection(){
+class OnBoardFragment : BaseFragmentInjection() {
 
-    private lateinit var mViewDataBinding : FragmentOnBoardBinding
+    private lateinit var mViewDataBinding: FragmentOnBoardBinding
 
     private lateinit var mAdapter: OnBoardingAdapter
 
@@ -22,7 +21,7 @@ class OnBoardFragment : BaseFragmentInjection(){
     }
 
     public override fun layoutId(): Int {
-         return R.layout.fragment_on_board
+        return R.layout.fragment_on_board
     }
 
     override fun initLayout(inflater: LayoutInflater, container: ViewGroup?): View {
@@ -40,7 +39,7 @@ class OnBoardFragment : BaseFragmentInjection(){
         mViewDataBinding.tabDot.setupWithViewPager(mViewDataBinding.viewpager, true);
     }
 
-    fun goToAuthen() {
-
+    fun goToAuthen(){
+        replaceFragmentFromActivity(createNewFragment<AuthenFragment>(context!!))
     }
 }

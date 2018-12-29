@@ -68,4 +68,5 @@ dependencies {
     annotationProcessor 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
 
     implementation project(':core')
+    implementation project(':flatform')
 }
