@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
-import nam.tran.flatform.model.core.state.Loading
-import nam.tran.flatform.model.core.state.Resource
-import nam.tran.flatform.model.core.state.Status
+import nam.tran.data.model.core.state.Loading
+import nam.tran.data.model.core.state.Resource
+import nam.tran.data.model.core.state.Status
 import tran.nam.core.view.BaseActivityWithFragment
 import tran.nam.core.view.BaseParentFragment
 import tran.nam.core.viewmodel.IView

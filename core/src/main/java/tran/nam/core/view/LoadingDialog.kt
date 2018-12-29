@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import tran.nam.core.R
 import tran.nam.core.databinding.IncludeProgressLayoutBinding
-import tran.nam.util.Logger
+import nam.tran.data.Logger
 import javax.inject.Inject
 
 @Suppress("unused")

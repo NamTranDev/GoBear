@@ -9,7 +9,7 @@ import dev.tran.nam.gobear.view.main.MainActivity
 import dev.tran.nam.gobear.view.main.MainActivityModule
 import dev.tran.nam.gobear.view.splash.SplashActivity
 import dev.tran.nam.gobear.view.splash.SplashActivityModule
-import nam.tran.flatform.di.DataModule
+import nam.tran.data.di.DataModule
 import javax.inject.Singleton
 
 /**

@@ -8,7 +8,7 @@ import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentOnBoardBinding
 import dev.tran.nam.gobear.view.main.MainActivity
 import dev.tran.nam.gobear.view.splash.authen.AuthenFragment
-import nam.tran.flatform.local.IPreference
+import nam.tran.data.local.IPreference
 import tran.nam.core.view.BaseFragmentInjection
 import tran.nam.util.createNewFragment
 import tran.nam.util.start

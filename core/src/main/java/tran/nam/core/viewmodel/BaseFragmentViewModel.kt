@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import tran.nam.util.Logger
+import nam.tran.data.Logger
 import java.lang.ref.WeakReference
 
 open class BaseFragmentViewModel(application: Application) : AndroidViewModel(application), LifecycleObserver {
