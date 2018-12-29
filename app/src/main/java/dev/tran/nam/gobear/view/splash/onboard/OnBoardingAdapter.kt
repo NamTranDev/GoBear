@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.PagerAdapter
 import dev.tran.nam.gobear.databinding.ItemOnboardingBinding
 
-class OnBoardingAdapter constructor(): PagerAdapter() {
+class OnBoardingAdapter : PagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val binding = ItemOnboardingBinding.inflate(LayoutInflater.from(container.context), container, false)

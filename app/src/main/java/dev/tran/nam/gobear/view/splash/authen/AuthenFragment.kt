@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentAuthenBinding
+import dev.tran.nam.gobear.view.main.MainActivity
 import dev.tran.nam.gobear.view.splash.authen.viewmodel.AuthenViewModel
 import dev.tran.nam.gobear.view.splash.authen.viewmodel.IAuthenViewModel
 import tran.nam.core.view.mvvm.BaseFragmentMVVM
+import tran.nam.util.start
 
 class AuthenFragment : BaseFragmentMVVM<FragmentAuthenBinding, AuthenViewModel>(), IAuthenViewModel {
 
@@ -30,7 +32,7 @@ class AuthenFragment : BaseFragmentMVVM<FragmentAuthenBinding, AuthenViewModel>(
                 } else {
                     if (this.data!!) {
                         hideDialogLoading()
-                        Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+                        activity?.start<MainActivity>(true)
                     } else {
                         onShowDialogError(this.errorResource?.massage, this.errorResource?.code)
                     }

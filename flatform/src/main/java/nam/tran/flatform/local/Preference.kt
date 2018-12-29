@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 open class Preference @Inject
-internal constructor(mApp: Context) : IPreference {
+internal constructor(mApp: Application) : IPreference {
 
     private val mPref: SharedPreferences
 

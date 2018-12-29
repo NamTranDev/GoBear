@@ -10,12 +10,13 @@ import nam.tran.flatform.database.DbModule
 import nam.tran.flatform.interactor.app.AppRepository
 import nam.tran.flatform.interactor.app.IAppRepository
 import nam.tran.flatform.interactor.authen.AuthenRepository
+import nam.tran.flatform.local.PreferenceModule
 import nam.tran.flatform.model.core.state.Listing
 import nam.tran.flatform.model.core.state.Resource
 import javax.inject.Singleton
 
 
-@Module(includes = [NetModule::class, DbModule::class])
+@Module(includes = [NetModule::class, DbModule::class,PreferenceModule::class])
 abstract class DataModule {
 
     @Binds

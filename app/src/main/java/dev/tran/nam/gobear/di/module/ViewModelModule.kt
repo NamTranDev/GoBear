@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import dev.tran.nam.gobear.view.main.home.viewmodel.HomeViewModel
 import dev.tran.nam.gobear.view.splash.authen.viewmodel.AuthenViewModel
 import tran.nam.core.di.ViewModelFactory
 import tran.nam.core.di.inject.ViewModelKey
@@ -19,4 +20,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AuthenViewModel::class)
     internal abstract fun bindAuthenViewModel(model: AuthenViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(HomeViewModel::class)
+    internal abstract fun bindHomeViewModel(model: HomeViewModel): ViewModel
 }
