@@ -9,5 +9,7 @@
 
     <string name="unknown_error">"Unknown Error</string>
     <string name="bt_retry">Retry</string>
+    <string name="text_ok">Ok</string>
+    <string name="title_error">Error</string>
 
 </resources>

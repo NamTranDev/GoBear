@@ -68,4 +68,12 @@ dependencies {
     annotationProcessor 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
 
     implementation project(':core')
+    implementation project(':flatform')
+
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.0.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
 }

@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
-import nam.tran.domain.entity.state.Loading
-import nam.tran.domain.entity.state.Resource
-import nam.tran.domain.entity.state.Status
+import nam.tran.flatform.model.core.state.Loading
+import nam.tran.flatform.model.core.state.Resource
+import nam.tran.flatform.model.core.state.Status
 import tran.nam.core.view.BaseActivityWithFragment
 import tran.nam.core.view.BaseParentFragment
 import tran.nam.core.viewmodel.IView
@@ -159,10 +159,10 @@ object BidingCommon {
         }
     }
 
-    private fun dialogError(view: View, error: String?,codeError : Int?) {
+    private fun dialogError(view: View, error: String?, codeError: Int?) {
         val context = view.context
         if (context is IView) {
-            (context as IView).onShowDialogError(error,codeError)
+            (context as IView).onShowDialogError(error, codeError)
         } else {
             if (context is BaseActivityWithFragment) {
                 val fragmentHelper = context.mFragmentHelper
@@ -171,7 +171,7 @@ object BidingCommon {
                     val fragmentHelperChild = fragment.mChildFragmentHelper
                     val childFragment = fragmentHelperChild.getCurrentFragment()
                     if (childFragment is IView) {
-                        (childFragment as IView).onShowDialogError(error,codeError)
+                        (childFragment as IView).onShowDialogError(error, codeError)
                     }
                 }
             }

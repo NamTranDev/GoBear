@@ -1,0 +1,16 @@
+package nam.tran.flatform.database
+
+import dagger.Module
+
+@Module
+class DbModule {
+
+//    @Singleton
+//    @Provides
+//    fun provideDb(app: Application): DbProvider {
+//        return Room
+//                .databaseBuilder(app, DbProvider::class.java, "application.db")
+//                .fallbackToDestructiveMigration()
+//                .build()
+//    }
+}

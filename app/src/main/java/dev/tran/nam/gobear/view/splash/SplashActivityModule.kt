@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dev.tran.nam.gobear.view.splash.authen.AuthenFragment
+import dev.tran.nam.gobear.view.splash.authen.AuthenFragmentModule
 import dev.tran.nam.gobear.view.splash.onboard.OnBoardFragment
 import dev.tran.nam.gobear.view.splash.onboard.OnBoardFragmentModule
 import tran.nam.core.di.inject.PerActivity
@@ -16,6 +18,14 @@ import tran.nam.core.view.IFragmentProvider
  */
 @Module
 abstract class SplashActivityModule {
+
+    /**
+    * Provides the injector for the [AuthenFragmentModule], which has access to the dependencies
+    * provided by this application instance (singleton scoped objects).
+    */
+    @PerFragment
+    @ContributesAndroidInjector(modules = [AuthenFragmentModule::class])
+    internal abstract fun injectorAuthenFragment(): AuthenFragment
 
     /**
      * Provides the injector for the [OnBoardFragmentModule], which has access to the dependencies
