@@ -30,7 +30,7 @@ internal constructor(mApp: Application) : IPreference {
         mPref.edit().putBoolean(AUTHENTICATION,isRemember).apply()
     }
 
-    override fun isLogin(): Boolean {
+    override fun isRememberLogin(): Boolean {
         return mPref.getBoolean(AUTHENTICATION,false)
     }
 }
