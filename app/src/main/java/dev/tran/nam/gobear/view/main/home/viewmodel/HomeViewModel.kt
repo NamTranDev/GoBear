@@ -1,13 +1,11 @@
 package dev.tran.nam.gobear.view.main.home.viewmodel
 
 import android.app.Application
-
-import javax.inject.Inject
-
+import androidx.lifecycle.MutableLiveData
+import nam.tran.flatform.model.core.state.Resource
 import tran.nam.core.viewmodel.BaseFragmentViewModel
 import tran.nam.core.viewmodel.IProgressViewModel
-import nam.tran.domain.entity.state.Resource
-import androidx.lifecycle.MutableLiveData
+import javax.inject.Inject
 
 class HomeViewModel @Inject internal constructor(application: Application) : BaseFragmentViewModel(application),
     IProgressViewModel {

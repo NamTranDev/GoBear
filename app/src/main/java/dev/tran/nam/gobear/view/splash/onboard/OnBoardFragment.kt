@@ -6,11 +6,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentOnBoardBinding
+import dev.tran.nam.gobear.view.main.MainActivity
 import dev.tran.nam.gobear.view.splash.authen.AuthenFragment
+import nam.tran.flatform.local.IPreference
 import tran.nam.core.view.BaseFragmentInjection
 import tran.nam.util.createNewFragment
+import tran.nam.util.start
+import javax.inject.Inject
 
 class OnBoardFragment : BaseFragmentInjection() {
+
+    @Inject
+    lateinit var iPreference: IPreference
 
     private lateinit var mViewDataBinding: FragmentOnBoardBinding
 
@@ -39,7 +46,10 @@ class OnBoardFragment : BaseFragmentInjection() {
         mViewDataBinding.tabDot.setupWithViewPager(mViewDataBinding.viewpager, true);
     }
 
-    fun goToAuthen(){
-        replaceFragmentFromActivity(createNewFragment<AuthenFragment>(context!!))
+    fun goToAuthen() {
+        if (iPreference.isRememberLogin())
+            activity?.start<MainActivity>(true)
+        else
+            replaceFragmentFromActivity(createNewFragment<AuthenFragment>(context!!))
     }
 }
