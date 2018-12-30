@@ -43,7 +43,7 @@ class OnBoardFragment : BaseFragmentInjection() {
 
         mAdapter = OnBoardingAdapter()
         mViewDataBinding.viewpager.adapter = mAdapter
-        mViewDataBinding.tabDot.setupWithViewPager(mViewDataBinding.viewpager, true);
+        mViewDataBinding.tabDot.setupWithViewPager(mViewDataBinding.viewpager, true)
     }
 
     fun goToAuthen() {
