@@ -1,9 +1,4 @@
 # GoBear
-   
-    ![ScreenShot 1](https://imgur.com/a/mQSabxq)
-    ![ScreenShot 2](https://imgur.com/a/JOUBWmW)
-    ![ScreenShot 3](https://imgur.com/a/yNUgxgU)
-    ![ScreenShot 4](https://imgur.com/a/0knhtur)
 
 # Features!
 
@@ -11,6 +6,11 @@
   - Login
   - Display list article get from link [https://vnexpress.net/rss/tin-moi-nhat.rss]
   - Show detail article
+  
+  ![ScreenShot 1](https://imgur.com/a/mQSabxq)
+  ![ScreenShot 2](https://imgur.com/a/JOUBWmW)
+  ![ScreenShot 3](https://imgur.com/a/yNUgxgU)
+  ![ScreenShot 4](https://imgur.com/a/0knhtur)
   
 # Library reference resources
 
