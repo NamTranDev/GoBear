@@ -7,10 +7,10 @@
   - Display list article get from link [https://vnexpress.net/rss/tin-moi-nhat.rss]
   - Show detail article
   
-  ![ScreenShot 1](https://imgur.com/a/mQSabxq)
-  ![ScreenShot 2](https://imgur.com/a/JOUBWmW)
-  ![ScreenShot 3](https://imgur.com/a/yNUgxgU)
-  ![ScreenShot 4](https://imgur.com/a/0knhtur)
+  ![ScreenShot 1](https://github.com/NamTranDev/GoBear/blob/master/image/image1.png)
+  ![ScreenShot 2](https://github.com/NamTranDev/GoBear/blob/master/image/image2.png)
+  ![ScreenShot 3](https://github.com/NamTranDev/GoBear/blob/master/image/image3.png)
+  ![ScreenShot 4](https://github.com/NamTranDev/GoBear/blob/master/image/image4.png)
   
 # Library reference resources
 
