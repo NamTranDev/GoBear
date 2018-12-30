@@ -25,9 +25,7 @@ class OnBoardFragment : BaseFragmentInjection() {
 
     private lateinit var mAdapter: OnBoardingAdapter
 
-    override fun isHaveAnimation(): Boolean {
-        return false
-    }
+    override var isAnimation: Boolean = false
 
     public override fun layoutId(): Int {
         return R.layout.fragment_on_board

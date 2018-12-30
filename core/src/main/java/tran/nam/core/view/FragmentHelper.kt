@@ -170,6 +170,8 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
 
         val closeFragment = currentStack.peek()
         closeFragment.setOutLeft(true)
+        closeFragment.isAnimation = true
+        fragment.isAnimation = true
         val transaction = mFragmentManager!!.beginTransaction()
         transaction.replace(mLayoutId, fragment)
         mPageList[mPageIndex].pop()

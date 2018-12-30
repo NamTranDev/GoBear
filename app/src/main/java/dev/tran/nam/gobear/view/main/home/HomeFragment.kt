@@ -27,9 +27,7 @@ class HomeFragment : BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>(), IHo
 
     private val dataBindingComponent = FragmentDataBindingComponent(this)
 
-    override fun isHaveAnimation(): Boolean {
-        return false
-    }
+    override var isAnimation: Boolean = false
 
     override fun initViewModel(factory: ViewModelProvider.Factory?) {
         mViewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
@@ -67,6 +65,8 @@ class HomeFragment : BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>(), IHo
                 mViewModel?.isRefreshing?.set(false)
                 if (!it.isSuccess()) {
                     onShowDialogError(it.errorResource?.message, it.errorResource?.code)
+                }else{
+                    mViewDataBinding?.rvArticle?.scrollToPosition(0)
                 }
             }
         })

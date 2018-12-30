@@ -4,32 +4,50 @@
 
     <data>
         <variable name="article" type="dev.tran.nam.gobear.model.ArticleModel"/>
-
-        <variable name="view" type="dev.tran.nam.gobear.view.main.detail.DetailFragment"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/white"
             tools:context="dev.tran.nam.gobear.view.main.detail.DetailFragment">
 
         <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:onNavigationBackClick="@{view.onBack()}">
+                android:id="@+id/toolbar"
+                android:background="@android:color/darker_gray">
             <TextView
                     android:layout_width="@dimen/positive_100dp"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:ellipsize="end"
+                    android:textColor="@android:color/black"
                     android:text="@{article.title}"
                     android:layout_gravity="center"
                     android:id="@+id/toolbar_title"/>
         </androidx.appcompat.widget.Toolbar>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:fillViewport="true">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{article.image}"
+                        tools:src="@drawable/image_place_holder"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -3,6 +3,7 @@ package dev.tran.nam.gobear.view.main.detail
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentDetailBinding
@@ -24,6 +25,13 @@ class DetailFragment : BaseFragmentInjection() {
     }
 
     override fun onVisible() {
+        (activity as AppCompatActivity).setSupportActionBar(mViewDataBinding.toolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
+        mViewDataBinding.toolbar.setNavigationOnClickListener{
+            onBack()
+        }
+
         val article = arguments?.getSerializable(Constant.ARGUMENT_KEY_ARTICLE)
         article.run {
             mViewDataBinding.article = this as ArticleModel
