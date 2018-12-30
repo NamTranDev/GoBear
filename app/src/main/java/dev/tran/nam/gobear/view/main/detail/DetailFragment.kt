@@ -35,6 +35,8 @@ class DetailFragment : BaseFragmentInjection() {
         val article = arguments?.getSerializable(Constant.ARGUMENT_KEY_ARTICLE)
         article.run {
             mViewDataBinding.article = this as ArticleModel
+
+            mViewDataBinding.webview.loadUrl(this.link)
         }
     }
 
