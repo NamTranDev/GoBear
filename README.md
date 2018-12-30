@@ -1,12 +1,5 @@
 # GoBear
-
-    <p align="center">
-      <img src="https://imgur.com/a/mQSabxq" width="250">
-      <img src="https://imgur.com/a/JOUBWmW" width="250">
-      <img src="https://imgur.com/a/yNUgxgU" width="250">
-      <img src="https://imgur.com/a/0knhtur" width="250">
-    </p>
-    
+   
     ![ScreenShot 1](https://imgur.com/a/mQSabxq)
     ![ScreenShot 2](https://imgur.com/a/JOUBWmW)
     ![ScreenShot 3](https://imgur.com/a/yNUgxgU)
