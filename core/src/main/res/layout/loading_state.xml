@@ -21,7 +21,7 @@
     <data>
         <variable
                 name="resource"
-                type="nam.tran.flatform.model.core.state.Resource"/>
+                type="nam.tran.data.model.core.state.Resource"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

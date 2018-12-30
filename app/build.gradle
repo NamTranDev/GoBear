@@ -67,13 +67,8 @@ dependencies {
     kapt 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
     annotationProcessor 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
 
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+
     implementation project(':core')
-    implementation project(':flatform')
-
-    // Core library
-    androidTestImplementation 'androidx.test:core:1.0.0'
-
-    // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test:rules:1.1.0'
+    implementation project(':data')
 }

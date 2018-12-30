@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
-import nam.tran.flatform.model.core.state.Loading
-import nam.tran.flatform.model.core.state.Resource
-import nam.tran.flatform.model.core.state.Status
+import nam.tran.data.model.core.state.Loading
+import nam.tran.data.model.core.state.Resource
+import nam.tran.data.model.core.state.Status
 import tran.nam.core.view.BaseActivityWithFragment
 import tran.nam.core.view.BaseParentFragment
 import tran.nam.core.viewmodel.IView
@@ -24,11 +24,11 @@ object BidingCommon {
                 Status.ERROR -> when (it.loading) {
                     Loading.LOADING_DIALOG -> {
                         view.visibility = View.GONE
-                        dialogError(view, it.errorResource?.massage, it.errorResource?.code)
+                        dialogError(view, it.errorResource?.message, it.errorResource?.code)
                     }
                     Loading.LOADING_NONE -> Toast.makeText(
                         view.context,
-                        it.errorResource?.massage,
+                        it.errorResource?.message,
                         Toast.LENGTH_SHORT
                     ).show()
                     Loading.LOADING_NORMAL -> {
@@ -108,7 +108,7 @@ object BidingCommon {
                     }
                     Loading.LOADING_NORMAL -> {
                         text.visibility = View.VISIBLE
-                        text.text = it.errorResource?.massage
+                        text.text = it.errorResource?.message
                     }
                 }
                 Status.LOADING, Status.SUCCESS -> text.visibility = View.GONE

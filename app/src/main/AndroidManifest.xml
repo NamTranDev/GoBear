@@ -3,6 +3,8 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="dev.tran.nam.gobear">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
             android:name=".view.AppState"
             android:allowBackup="true"

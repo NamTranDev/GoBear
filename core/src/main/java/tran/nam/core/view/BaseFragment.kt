@@ -49,6 +49,7 @@ abstract class BaseFragment : Fragment() {
     private var mIsInLeft: Boolean = false
     private var mIsOutLeft: Boolean = false
     private var mIsPush: Boolean = false
+    open var isAnimation: Boolean = true
     var isInitialized = true
     var isViewCreated = false
     private var mViewDestroyed = false
@@ -60,8 +61,8 @@ abstract class BaseFragment : Fragment() {
     @LayoutRes
     protected abstract fun layoutId(): Int
 
-    protected open fun isHaveAnimation(): Boolean {
-        return true
+    private fun isHaveAnimation(): Boolean {
+        return isAnimation
     }
 
     val tagName: String = javaClass.simpleName
@@ -130,39 +131,43 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation {
         val animation: Animation
-        if (mIsCurrentScreen) {
-            val popExit = popExitAnimId()
-            val pushEnter = if (!isHaveAnimation()) R.anim.no_anim else pushEnterAnimId()
-            val pushExit = pushExitAnimId()
-            val popEnter = if (!isHaveAnimation()) R.anim.no_anim else popEnterAnimId()
-            animation = if (mIsPush)
-                AnimationUtils.loadAnimation(activity(), if (enter) pushEnter else pushExit)
-            else
-                AnimationUtils.loadAnimation(activity(), if (enter) popEnter else popExit)
-        } else {
-            if (enter) {
-                val left = if (!isHaveAnimation()) R.anim.no_anim else leftInAnimId()
-                val right = if (!isHaveAnimation()) R.anim.no_anim else rightInAnimId()
-                if (mIsInLeft) {
-                    if (left == 0) {
-                        animation = AlphaAnimation(1f, 1f)
-                        animation.setDuration(resources.getInteger(R.integer.animation_time_full).toLong())
+        if (isHaveAnimation()) {
+            if (mIsCurrentScreen) {
+                val popExit = popExitAnimId()
+                val pushEnter = pushEnterAnimId()
+                val pushExit = pushExitAnimId()
+                val popEnter = popEnterAnimId()
+                animation = if (mIsPush)
+                    AnimationUtils.loadAnimation(activity(), if (enter) pushEnter else pushExit)
+                else
+                    AnimationUtils.loadAnimation(activity(), if (enter) popEnter else popExit)
+            } else {
+                if (enter) {
+                    val left = leftInAnimId()
+                    val right = rightInAnimId()
+                    if (mIsInLeft) {
+                        if (left == 0) {
+                            animation = AlphaAnimation(1f, 1f)
+                            animation.setDuration(resources.getInteger(R.integer.animation_time_full).toLong())
+                        } else {
+                            animation = AnimationUtils.loadAnimation(activity(), left)
+                        }
                     } else {
-                        animation = AnimationUtils.loadAnimation(activity(), left)
+                        if (right == 0) {
+                            animation = AlphaAnimation(1f, 1f)
+                            animation.setDuration(resources.getInteger(R.integer.animation_time_full).toLong())
+                        } else {
+                            animation = AnimationUtils.loadAnimation(activity(), right)
+                        }
                     }
                 } else {
-                    if (right == 0) {
-                        animation = AlphaAnimation(1f, 1f)
-                        animation.setDuration(resources.getInteger(R.integer.animation_time_full).toLong())
-                    } else {
-                        animation = AnimationUtils.loadAnimation(activity(), right)
-                    }
+                    val left = leftOutAnimId()
+                    val right = rightOutAnimId()
+                    animation = AnimationUtils.loadAnimation(activity(), if (mIsOutLeft) left else right)
                 }
-            } else {
-                val left = leftOutAnimId()
-                val right = rightOutAnimId()
-                animation = AnimationUtils.loadAnimation(activity(), if (mIsOutLeft) left else right)
             }
+        } else {
+            animation = AnimationUtils.loadAnimation(context, R.anim.no_anim)
         }
 
         if (enter) {

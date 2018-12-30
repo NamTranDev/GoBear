@@ -5,4 +5,4 @@ import javax.inject.Singleton
 
 @Singleton
 class DataMapper @Inject
-internal constructor()
+internal constructor(val articleModelMapper: ArticleModelMapper)
