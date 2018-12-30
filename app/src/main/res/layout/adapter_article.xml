@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="article" type="dev.tran.nam.gobear.model.ArticleModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/positive_10dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/positive_100dp"
+                android:layout_height="@dimen/positive_80dp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/image_place_holder"
+                android:id="@+id/iv"
+                app:imageUrl="@{article.image}"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                tools:text="May mắn vì gặp người tuổi Tuất"
+                android:maxLines="1"
+                android:text="@{article.title}"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/tv_title"
+                android:textColor="@android:color/black"
+                android:layout_marginStart="@dimen/positive_10dp"
+                android:textSize="@dimen/text_size_12sp"
+                android:fontFamily="@font/sfprotext_semibold"
+                app:layout_constraintStart_toEndOf="@+id/iv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintBottom_toTopOf="@+id/tv_date"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/iv"
+                android:layout_marginStart="@dimen/positive_10dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_10sp"
+                android:id="@+id/tv_date"
+                android:text="@{article.dateData}"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                tools:text="12/12/2018"
+                app:layout_constraintBottom_toTopOf="@+id/appCompatTextView"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/iv"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@{article.descriptionData}"
+                android:layout_marginStart="@dimen/positive_10dp"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_size_10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date"
+                tools:text="Có một người được mời đi ăn cỗ."
+                android:id="@+id/appCompatTextView"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -164,6 +164,14 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
     }
 
     internal fun replaceFragment(fragment: T) {
+        val currentStack = mPageList[mPageIndex]
+        if (currentStack.peek().tagName == fragment.tagName)
+            return
+
+        val closeFragment = currentStack.peek()
+        closeFragment.setOutLeft(true)
+        closeFragment.isAnimation = true
+        fragment.isAnimation = true
         val transaction = mFragmentManager!!.beginTransaction()
         transaction.replace(mLayoutId, fragment)
         mPageList[mPageIndex].pop()

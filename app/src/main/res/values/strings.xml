@@ -13,4 +13,6 @@
     <string name="authen_hint_password">Password</string>
     <string name="authen_text_login">Login</string>
     <string name="authen_text_remember_me">Remember me</string>
+    <string name="text_logout"><u>Logout</u></string>
+    <string name="empty"></string>
 </resources>

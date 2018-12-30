@@ -78,7 +78,7 @@ dependencies {
     kapt 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
     annotationProcessor 'com.android.tools.build.jetifier:jetifier-core:1.0.0-beta02'
 
-    api project(':domain')
+    implementation project(':data')
     application project(':app')
 
 }

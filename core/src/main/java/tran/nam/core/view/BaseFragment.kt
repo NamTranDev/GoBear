@@ -49,6 +49,7 @@ abstract class BaseFragment : Fragment() {
     private var mIsInLeft: Boolean = false
     private var mIsOutLeft: Boolean = false
     private var mIsPush: Boolean = false
+    open var isAnimation: Boolean = true
     var isInitialized = true
     var isViewCreated = false
     private var mViewDestroyed = false
@@ -60,8 +61,8 @@ abstract class BaseFragment : Fragment() {
     @LayoutRes
     protected abstract fun layoutId(): Int
 
-    protected open fun isHaveAnimation(): Boolean {
-        return true
+    private fun isHaveAnimation(): Boolean {
+        return isAnimation
     }
 
     val tagName: String = javaClass.simpleName

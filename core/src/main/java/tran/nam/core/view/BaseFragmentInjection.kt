@@ -38,8 +38,9 @@ abstract class BaseFragmentInjection : BaseFragment(), HasSupportFragmentInjecto
     }
 
     protected fun addFragmentFromActivity(fragment: BaseFragment) {
-        if (activity() != null && activity() is BaseActivityWithFragment && !activity()!!.isFinishing)
+        if (activity() != null && activity() is BaseActivityWithFragment && !activity()!!.isFinishing){
             (activity() as BaseActivityWithFragment).addFragment(fragment)
+        }
     }
 
     protected fun showFragmentFromActivity(position: Int) {

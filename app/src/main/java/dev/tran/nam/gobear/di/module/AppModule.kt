@@ -5,9 +5,11 @@ import dagger.Binds
 import dagger.Module
 import dagger.android.support.AndroidSupportInjectionModule
 import dev.tran.nam.gobear.view.AppState
+import dev.tran.nam.gobear.view.main.MainActivity
+import dev.tran.nam.gobear.view.main.MainActivityModule
 import dev.tran.nam.gobear.view.splash.SplashActivity
 import dev.tran.nam.gobear.view.splash.SplashActivityModule
-import nam.tran.domain.di.DataModule
+import nam.tran.data.di.DataModule
 import javax.inject.Singleton
 
 /**
@@ -29,10 +31,18 @@ abstract class AppModule {
     internal abstract fun application(app: AppState): Application
 
     /**
-    * Provides the injector for the [SplashActivityModule], which has access to the dependencies
-    * provided by this application instance (singleton scoped objects).
-    */
+     * Provides the injector for the [SplashActivityModule], which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
     @tran.nam.core.di.inject.PerActivity
     @dagger.android.ContributesAndroidInjector(modules = [SplashActivityModule::class])
     internal abstract fun injectorSplashActivity(): SplashActivity
+
+    /**
+     * Provides the injector for the [MainActivityModule], which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @tran.nam.core.di.inject.PerActivity
+    @dagger.android.ContributesAndroidInjector(modules = [MainActivityModule::class])
+    internal abstract fun injectorMainActivity(): MainActivity
 }
