@@ -11,6 +11,9 @@ android {
 
         buildConfigField "String", "LINK_RSS", "\"https://vnexpress.net/rss/tin-moi-nhat.rss\""
         buildConfigField "String", "DB_KEY", "\"NamTranDev\""
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -23,6 +26,15 @@ android {
     compileOptions {
         sourceCompatibility rootProject.java_version
         targetCompatibility rootProject.java_version
+    }
+
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
     }
 }
 
@@ -61,10 +73,13 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycle"
     implementation "net.zetetic:android-database-sqlcipher:$rootProject.sqlcipher"
 
-    testImplementation "android.arch.core:core-testing:1.1.1"
+    testImplementation "androidx.arch.core:core-testing:2.0.0"
     testImplementation 'androidx.test:runner:1.1.1'
     testImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
-    // required if you want to use Mockito for unit tests
     testImplementation 'org.mockito:mockito-core:2.22.0'
+
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'org.mockito:mockito-core:2.22.0'
 }

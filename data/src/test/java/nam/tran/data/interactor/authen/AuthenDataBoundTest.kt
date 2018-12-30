@@ -49,7 +49,8 @@ class AuthenDataBoundTest {
 
         // when
         classUnderTest.emptyUser(username)
-        Mockito.verify(observer).onChanged(Resource.error(ErrorResource("User not empty", StatusCode.EMPTY_FIELD),false))
+        Mockito.verify(observer)
+            .onChanged(Resource.error(ErrorResource("User not empty", StatusCode.EMPTY_FIELD), false))
     }
 
 
@@ -62,7 +63,8 @@ class AuthenDataBoundTest {
 
         // when
         classUnderTest.emptyPassword(password)
-        Mockito.verify(observer).onChanged(Resource.error(ErrorResource("Password not empty", StatusCode.EMPTY_FIELD),false))
+        Mockito.verify(observer)
+            .onChanged(Resource.error(ErrorResource("Password not empty", StatusCode.EMPTY_FIELD), false))
     }
 
     @org.junit.Test
@@ -74,8 +76,9 @@ class AuthenDataBoundTest {
         classUnderTest.result.observeForever(observer)
 
         // when
-        classUnderTest.loginFail(username,password)
-        Mockito.verify(observer).onChanged(Resource.error(ErrorResource("Email or Password not correct",classUnderTest.INCORRECT),false))
+        classUnderTest.loginFail(username, password)
+        Mockito.verify(observer)
+            .onChanged(Resource.error(ErrorResource("Email or Password not correct", classUnderTest.INCORRECT), false))
     }
 
     @org.junit.Test
@@ -88,7 +91,7 @@ class AuthenDataBoundTest {
         classUnderTest.result.observeForever(observer)
 
         // when
-        classUnderTest.login(username,password,isRemember)
+        classUnderTest.login(username, password, isRemember)
         Mockito.verify(observer).onChanged(Resource.loading(null))
         Mockito.verify(observer).onChanged(Resource.success(true))
         verify(iPreference).login(isRemember)

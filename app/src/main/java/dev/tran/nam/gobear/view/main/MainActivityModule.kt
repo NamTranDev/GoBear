@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dev.tran.nam.gobear.view.main.detail.DetailFragment
+import dev.tran.nam.gobear.view.main.detail.DetailFragmentModule
 import dev.tran.nam.gobear.view.main.home.HomeFragment
 import dev.tran.nam.gobear.view.main.home.HomeFragmentModule
 import tran.nam.core.di.inject.PerActivity
@@ -16,6 +18,14 @@ import tran.nam.core.view.IFragmentProvider
  */
 @Module
 abstract class MainActivityModule {
+
+    /**
+     * Provides the injector for the [DetailFragmentModule], which has access to the dependencies
+     * provided by this application instance (singleton scoped objects).
+     */
+    @PerFragment
+    @ContributesAndroidInjector(modules = [DetailFragmentModule::class])
+    internal abstract fun injectorDetailFragment(): DetailFragment
 
     /**
      * Provides the injector for the [HomeFragmentModule], which has access to the dependencies

@@ -11,7 +11,9 @@
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+    app:refreshing="@{viewModel.isRefreshing}">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,6 +39,7 @@
                     android:text="@string/text_logout"
                     android:padding="@dimen/positive_10dp"
                     android:textSize="@dimen/text_size_12sp"
+                    android:onClick="@{() -> viewModel.logout()}"
                     android:textColor="@android:color/black"
                     android:fontFamily="@font/sfprotext_medium"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +64,9 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/positive_5dp"
+                    android:id="@+id/rv_article"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title"
                     app:layout_constraintEnd_toStartOf="@+id/guideline_end"
                     app:layout_constraintStart_toStartOf="@+id/guideline_start"

@@ -21,15 +21,17 @@ import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 @OpenForTesting
-class RssDataBound constructor(private val appExecutors: AppExecutors, private val dbProvider: DbProvider) {
+class RssDataBound constructor(private val appExecutors: AppExecutors) {
 
-    val result = loadFromDb()
+    var result: LiveData<List<Article>> ?= null
     val state = MutableLiveData<Resource<*>>()
+
+    lateinit var dbProvider: DbProvider
 
     @Suppress("RedundantLambdaArrow")
     fun onRefresh() {
+        loadFromDb()
         state.postValue(Resource.loading<Any>())
 
         appExecutors.diskIO().execute {
@@ -44,7 +46,7 @@ class RssDataBound constructor(private val appExecutors: AppExecutors, private v
     }
 
     @WorkerThread
-    private fun saveCallResult(data: List<Article>) {
+    fun saveCallResult(data: List<Article>) {
         dbProvider.articleAccess().insert(data)
     }
 
@@ -52,15 +54,14 @@ class RssDataBound constructor(private val appExecutors: AppExecutors, private v
         var link = BuildConfig.LINK_RSS
 
         if (!link.startsWith("http://") && !link.startsWith("https://"))
-            link = "http://" + link
+            link = "http://$link"
 
         val url = URL(link)
-        val inputStream = url.openConnection().getInputStream()
-        return parseXML(inputStream)
+        return parseXML(url)
     }
 
     @SuppressLint("SimpleDateFormat")
-    fun parseXML(inputStream: InputStream?): ArticleResponse {
+    fun parseXML(url: URL?): ArticleResponse {
 
         var isItem = false
 
@@ -71,8 +72,10 @@ class RssDataBound constructor(private val appExecutors: AppExecutors, private v
         var guid: String? = null
 
         val listData = mutableListOf<Article>()
+        var inputStream: InputStream? = null
 
         try {
+            inputStream = url?.openConnection()?.getInputStream()
             val xmlPullParser = Xml.newPullParser()
             xmlPullParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
             xmlPullParser.setInput(inputStream, null)
@@ -93,8 +96,6 @@ class RssDataBound constructor(private val appExecutors: AppExecutors, private v
                         continue
                     }
                 }
-
-                Logger.debug("Parsing name ==> $name")
 
                 var content = ""
                 if (xmlPullParser.next() == XmlPullParser.TEXT) {
@@ -117,7 +118,15 @@ class RssDataBound constructor(private val appExecutors: AppExecutors, private v
                 if (title != null && link != null && description != null && pubDate != null && guid != null) {
                     if (isItem) {
                         val format = "E, d MMM yyyy HH:mm:ss Z"
-                        listData.add(Article(title, description, SimpleDateFormat(format, Locale.ENGLISH).parse(pubDate), link, guid))
+                        listData.add(
+                            Article(
+                                title,
+                                description,
+                                SimpleDateFormat(format, Locale.ENGLISH).parse(pubDate),
+                                link,
+                                guid
+                            )
+                        )
                     }
 
                     title = null
@@ -140,8 +149,8 @@ class RssDataBound constructor(private val appExecutors: AppExecutors, private v
         }
     }
 
-    fun loadFromDb(): LiveData<List<Article>> {
-        return dbProvider.articleAccess().getArticle()
+    fun loadFromDb() {
+        result = dbProvider.articleAccess().getArticle()
     }
 
 }

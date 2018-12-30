@@ -12,6 +12,9 @@ interface ArticleDAO{
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(list : List<Article>)
 
-    @Query("Select * From article order by date")
+    @Query("Select * From article order by date desc")
     fun getArticle(): LiveData<List<Article>>
+
+    @Query("DELETE FROM article")
+    fun delete()
 }

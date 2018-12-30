@@ -24,11 +24,11 @@ object BidingCommon {
                 Status.ERROR -> when (it.loading) {
                     Loading.LOADING_DIALOG -> {
                         view.visibility = View.GONE
-                        dialogError(view, it.errorResource?.massage, it.errorResource?.code)
+                        dialogError(view, it.errorResource?.message, it.errorResource?.code)
                     }
                     Loading.LOADING_NONE -> Toast.makeText(
                         view.context,
-                        it.errorResource?.massage,
+                        it.errorResource?.message,
                         Toast.LENGTH_SHORT
                     ).show()
                     Loading.LOADING_NORMAL -> {
@@ -108,7 +108,7 @@ object BidingCommon {
                     }
                     Loading.LOADING_NORMAL -> {
                         text.visibility = View.VISIBLE
-                        text.text = it.errorResource?.massage
+                        text.text = it.errorResource?.message
                     }
                 }
                 Status.LOADING, Status.SUCCESS -> text.visibility = View.GONE

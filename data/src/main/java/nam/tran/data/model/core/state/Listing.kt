@@ -23,7 +23,7 @@ import androidx.lifecycle.LiveData
  */
 data class Listing<Any>(
     // the LiveData of paged lists for the UI to observe
-    val data: LiveData<Any>,
+    val data: LiveData<Any>? = null,
     // represents the network request status to show to the user
     val networkState: LiveData<Resource<*>>? = null
 )

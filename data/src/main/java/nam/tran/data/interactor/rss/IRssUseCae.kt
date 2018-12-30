@@ -8,4 +8,5 @@ import nam.tran.data.model.core.state.Resource
 interface IRssUseCae {
     fun initDataBound(): LiveData<Listing<List<Article>>>
     fun refresh()
+    fun logout()
 }
