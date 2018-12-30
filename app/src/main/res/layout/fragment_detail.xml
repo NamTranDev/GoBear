@@ -37,6 +37,8 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/positive_10dp"
+                    android:layout_marginEnd="@dimen/positive_10dp"
                     android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -45,6 +47,35 @@
                         android:scaleType="centerCrop"
                         app:imageUrl="@{article.image}"
                         tools:src="@drawable/image_place_holder"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="May mắn vì gặp người tuổi Tuất"
+                        android:text="@{article.title}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/tv_title"
+                        android:layout_marginTop="@dimen/positive_5dp"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size_12sp"
+                        android:fontFamily="@font/sfprotext_semibold"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/iv"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/text_size_10sp"
+                        android:layout_marginTop="@dimen/positive_5dp"
+                        android:id="@+id/tv_date"
+                        android:text="@{article.dateData}"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+                        tools:text="12/12/2018"/>
+
+                <WebView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/webview"/>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.core.widget.NestedScrollView>
