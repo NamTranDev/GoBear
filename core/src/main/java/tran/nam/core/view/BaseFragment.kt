@@ -49,7 +49,7 @@ abstract class BaseFragment : Fragment() {
     private var mIsInLeft: Boolean = false
     private var mIsOutLeft: Boolean = false
     private var mIsPush: Boolean = false
-    open var isAnimation: Boolean = true
+    open var isHaveAnimation: Boolean = true
     var isInitialized = true
     var isViewCreated = false
     private var mViewDestroyed = false
@@ -61,8 +61,8 @@ abstract class BaseFragment : Fragment() {
     @LayoutRes
     protected abstract fun layoutId(): Int
 
-    private fun isHaveAnimation(): Boolean {
-        return isAnimation
+    private fun haveAnimation(): Boolean {
+        return isHaveAnimation
     }
 
     val tagName: String = javaClass.simpleName
@@ -131,7 +131,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation {
         val animation: Animation
-        if (isHaveAnimation()) {
+        if (haveAnimation()) {
             if (mIsCurrentScreen) {
                 val popExit = popExitAnimId()
                 val pushEnter = pushEnterAnimId()

@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 @Suppress("unused")
 class FragmentHelper<T : BaseFragment> @Inject
-internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
+internal constructor() {
 
     private lateinit var mPageList: ArrayList<Stack<T>>
     private var mPageIndex: Int = 0
@@ -17,7 +17,7 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
 
     private var mOnChangedFragmentListener: OnChangedFragmentListener? = null
 
-    fun setupFragment() {
+    fun setupFragment(fragmentProvider: IFragmentProvider<T>) {
         this.mLayoutId = fragmentProvider.contentLayoutId
         this.mBuildFragments = fragmentProvider.fragments
         this.mFragmentManager = fragmentProvider.fragmentManager()
@@ -42,8 +42,7 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
         if (fragment.isAdded || fragment.isHidden || fragment.isDetached) {
             this.showFragment(mPageIndex)
         } else {
-            if (mOnChangedFragmentListener != null)
-                mOnChangedFragmentListener!!.onChangedFragment(fragment)
+            mOnChangedFragmentListener?.onChangedFragment(fragment)
             val transaction = mFragmentManager!!.beginTransaction()
             transaction.add(mLayoutId, fragment)
             transaction.commitAllowingStateLoss()
@@ -58,15 +57,14 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
 
         val hideFragment = currentStack.peek()
         currentStack.push(fragment)
-        if (mOnChangedFragmentListener != null) {
-            mOnChangedFragmentListener!!.onChangedFragment(fragment)
-            mOnChangedFragmentListener?.onHideFragment(hideFragment)
-        }
+        mOnChangedFragmentListener?.onChangedFragment(fragment)
+        mOnChangedFragmentListener?.onHideFragment(hideFragment)
 
         fragment.setCurrentScreen(true)
         fragment.setPush(true)
         hideFragment.setCurrentScreen(true)
         hideFragment.setPush(true)
+        hideFragment.isHaveAnimation = true
 
         val transaction = mFragmentManager!!.beginTransaction()
 
@@ -94,8 +92,8 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
         if (level <= 0) return false
         val parentFragment = mPageList[mPageIndex].peek()
         if (parentFragment is IParentFragmentListener && (parentFragment as IParentFragmentListener).popChildFragment(
-                level
-            )
+                        level
+                )
         ) {
             return true
         }
@@ -111,8 +109,7 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
         }
         val showFragment = mPageList[mPageIndex].peek()
 
-        if (mOnChangedFragmentListener != null)
-            mOnChangedFragmentListener!!.onChangedFragment(showFragment)
+        mOnChangedFragmentListener?.onChangedFragment(showFragment)
 
         showFragment.setCurrentScreen(true)
         showFragment.setPush(false)
@@ -157,10 +154,8 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
         else
             transaction.detach(hideFragment)
         transaction.commitAllowingStateLoss()
-        if (mOnChangedFragmentListener != null) {
-            mOnChangedFragmentListener?.onHideFragment(hideFragment)
-            mOnChangedFragmentListener!!.onChangedFragment(showFragment)
-        }
+        mOnChangedFragmentListener?.onHideFragment(hideFragment)
+        mOnChangedFragmentListener?.onChangedFragment(showFragment)
     }
 
     internal fun replaceFragment(fragment: T) {
@@ -170,8 +165,8 @@ internal constructor(private val fragmentProvider: IFragmentProvider<T>) {
 
         val closeFragment = currentStack.peek()
         closeFragment.setOutLeft(true)
-        closeFragment.isAnimation = true
-        fragment.isAnimation = true
+        closeFragment.isHaveAnimation = true
+        fragment.isHaveAnimation = true
         val transaction = mFragmentManager!!.beginTransaction()
         transaction.replace(mLayoutId, fragment)
         mPageList[mPageIndex].pop()

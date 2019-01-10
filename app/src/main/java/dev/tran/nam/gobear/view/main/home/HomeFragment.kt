@@ -8,15 +8,18 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentHomeBinding
+import dev.tran.nam.gobear.view.main.MainActivity
 import dev.tran.nam.gobear.view.main.detail.DetailFragment
 import dev.tran.nam.gobear.view.main.home.viewmodel.HomeViewModel
 import dev.tran.nam.gobear.view.main.home.viewmodel.IHomeViewModel
 import dev.tran.nam.gobear.view.splash.SplashActivity
 import nam.tran.data.executor.AppExecutors
 import tran.nam.core.biding.FragmentDataBindingComponent
+import tran.nam.core.view.BaseActivityWithFragment
 import tran.nam.core.view.mvvm.BaseFragmentMVVM
 import tran.nam.util.Constant
 import tran.nam.util.createNewFragment
+import tran.nam.util.getActivityFragment
 import tran.nam.util.start
 import javax.inject.Inject
 
@@ -27,7 +30,7 @@ class HomeFragment : BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>(), IHo
 
     private val dataBindingComponent = FragmentDataBindingComponent(this)
 
-    override var isAnimation: Boolean = false
+    override var isHaveAnimation: Boolean = false
 
     override fun initViewModel(factory: ViewModelProvider.Factory?) {
         mViewModel = ViewModelProviders.of(this, factory).get(HomeViewModel::class.java)
@@ -43,7 +46,7 @@ class HomeFragment : BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>(), IHo
         val adapter = ArticleAdapter(dataBindingComponent, appExecutors) {
             val bundle = Bundle()
             bundle.putSerializable(Constant.ARGUMENT_KEY_ARTICLE,it)
-            addFragmentFromActivity(createNewFragment<DetailFragment>(context!!,bundle))
+            getActivityFragment<MainActivity>()?.addFragment(createNewFragment<DetailFragment>(context!!,bundle))
         }
 
         binding.rvArticle.addItemDecoration(
@@ -80,6 +83,6 @@ class HomeFragment : BaseFragmentMVVM<FragmentHomeBinding, HomeViewModel>(), IHo
     override fun onLogout() {
         val bundle = Bundle()
         bundle.putBoolean(Constant.INTENT_KEY_LOGIN,true)
-        activity?.start<SplashActivity>(true,bundle)
+        activity?.start<SplashActivity>(true,bundle, arrayOf(R.anim.slide_left_in,R.anim.slide_right_out))
     }
 }

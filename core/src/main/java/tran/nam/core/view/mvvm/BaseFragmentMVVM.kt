@@ -94,7 +94,7 @@ abstract class BaseFragmentMVVM<V : ViewDataBinding, VM : BaseFragmentViewModel>
 
         alertDialog.setPositiveButton(
             getString(R.string.text_ok)
-        ) { dialog, id -> dialog.dismiss() }
+        ) { dialog, _ -> dialog.dismiss() }
 
         alertDialog.create().show()
     }

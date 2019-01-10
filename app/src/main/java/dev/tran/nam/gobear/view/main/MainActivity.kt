@@ -1,7 +1,5 @@
 package dev.tran.nam.gobear.view.main
 
-import android.os.Bundle
-
 import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.view.main.home.HomeFragment
 import tran.nam.core.view.BaseActivityWithFragment

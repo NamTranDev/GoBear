@@ -10,8 +10,10 @@ import android.content.res.Resources
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import tran.nam.core.R
+import tran.nam.core.view.BaseActivityWithFragment
+import tran.nam.core.view.BaseParentFragment
 
-inline fun <reified T> Activity.start(clearBackStack: Boolean = false, bundle: Bundle? = null) {
+inline fun <reified T> Activity.start(clearBackStack: Boolean = false, bundle: Bundle? = null,animation : Array<Int>? = null) {
     val intent = Intent(this, T::class.java)
     if (clearBackStack)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -19,7 +21,10 @@ inline fun <reified T> Activity.start(clearBackStack: Boolean = false, bundle: B
         intent.putExtras(bundle)
     }
     startActivity(intent)
-    overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out)
+    if (animation == null)
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out)
+    else
+        overridePendingTransition(animation[0], animation[1])
 }
 
 inline fun <reified T> Activity.startForResult(requestCode: Int, bundle: Bundle? = null) {
@@ -38,7 +43,7 @@ inline fun <reified T : Fragment> Context.newFragment(bundle: Bundle? = null): T
     return T::class.java.cast(Fragment.instantiate(this, T::class.java.name, bundle))
 }
 
-inline fun <reified T : Activity> Fragment.getOwnActivity(): T? {
+inline fun <reified T : BaseActivityWithFragment> Fragment.getActivityFragment(): T? {
     activity ?: return null
     return T::class.java.cast(activity)
 }

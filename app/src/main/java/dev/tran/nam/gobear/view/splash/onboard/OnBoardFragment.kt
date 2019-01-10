@@ -8,11 +8,15 @@ import androidx.databinding.DataBindingUtil
 import dev.tran.nam.gobear.R
 import dev.tran.nam.gobear.databinding.FragmentOnBoardBinding
 import dev.tran.nam.gobear.view.main.MainActivity
+import dev.tran.nam.gobear.view.main.detail.DetailFragment
+import dev.tran.nam.gobear.view.splash.SplashActivity
 import dev.tran.nam.gobear.view.splash.authen.AuthenFragment
 import nam.tran.data.local.IPreference
+import tran.nam.core.view.BaseActivityWithFragment
 import tran.nam.core.view.BaseFragmentInjection
 import tran.nam.util.Constant
 import tran.nam.util.createNewFragment
+import tran.nam.util.getActivityFragment
 import tran.nam.util.start
 import javax.inject.Inject
 
@@ -25,7 +29,7 @@ class OnBoardFragment : BaseFragmentInjection() {
 
     private lateinit var mAdapter: OnBoardingAdapter
 
-    override var isAnimation: Boolean = false
+    override var isHaveAnimation: Boolean = false
 
     public override fun layoutId(): Int {
         return R.layout.fragment_on_board
@@ -52,7 +56,7 @@ class OnBoardFragment : BaseFragmentInjection() {
         else{
             val bundle = Bundle()
             bundle.putBoolean(Constant.ARGUMENT_KEY_LOGIN,true)
-            replaceFragmentFromActivity(createNewFragment<AuthenFragment>(context!!,bundle))
+            getActivityFragment<SplashActivity>()?.replaceFragment(createNewFragment<AuthenFragment>(context!!,bundle))
         }
 
     }

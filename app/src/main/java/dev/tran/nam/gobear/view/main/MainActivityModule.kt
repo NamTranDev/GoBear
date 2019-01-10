@@ -39,7 +39,7 @@ abstract class MainActivityModule {
     @PerActivity
     internal abstract fun activity(activity: MainActivity): AppCompatActivity
 
-    @Binds
-    @PerActivity
-    internal abstract fun providerFragmentHelper(activity: MainActivity): IFragmentProvider<BaseFragment>
+//    @Binds
+//    @PerActivity
+//    internal abstract fun providerFragmentHelper(activity: MainActivity): IFragmentProvider<BaseFragment>
 }

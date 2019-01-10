@@ -18,7 +18,7 @@ class AuthenFragment : BaseFragmentMVVM<FragmentAuthenBinding, AuthenViewModel>(
         mViewModel = ViewModelProviders.of(this, factory).get(AuthenViewModel::class.java)
     }
 
-    override var isAnimation: Boolean = arguments?.getBoolean(Constant.ARGUMENT_KEY_LOGIN) ?: false
+    override var isHaveAnimation: Boolean = arguments?.getBoolean(Constant.ARGUMENT_KEY_LOGIN) ?: false
 
     override fun layoutId(): Int {
         return R.layout.fragment_authen

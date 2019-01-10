@@ -4,25 +4,26 @@ package tran.nam.core.view
 import androidx.fragment.app.FragmentManager
 import javax.inject.Inject
 
-abstract class BaseActivityWithFragment : BaseActivityInjection(), IFragmentProvider<BaseFragment> {
+abstract class BaseActivityWithFragment : BaseActivityInjection(), IFragmentProvider<BaseFragment>, FragmentHelper.OnChangedFragmentListener {
 
-    var mFragmentHelper: FragmentHelper<BaseFragment>? = null
+    lateinit var mFragmentHelper: FragmentHelper<BaseFragment>
         @Inject set
 
     fun addFragment(fragment: BaseFragment) {
-        mFragmentHelper?.pushFragment(fragment)
+        mFragmentHelper.pushFragment(fragment)
     }
 
     fun showFragment(position: Int) {
-        mFragmentHelper?.showFragment(position)
+        mFragmentHelper.showFragment(position)
     }
 
     fun replaceFragment(fragment: BaseFragment) {
-        mFragmentHelper?.replaceFragment(fragment)
+        mFragmentHelper.replaceFragment(fragment)
     }
 
     override fun initFragment() {
-        mFragmentHelper?.setupFragment()
+        mFragmentHelper.setupFragment(this)
+        mFragmentHelper.setOnChangedFragmentListener(this)
     }
 
     override fun fragmentManager(): FragmentManager {
@@ -30,14 +31,25 @@ abstract class BaseActivityWithFragment : BaseActivityInjection(), IFragmentProv
     }
 
     fun popToRoot() {
-        mFragmentHelper?.popFragmentToRoot()
+        mFragmentHelper.popFragmentToRoot()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mFragmentHelper.release()
     }
 
     override fun onBackPressed() {
-        mFragmentHelper?.run {
-            if (!this.popFragment()){
-                super.onBackPressed()
-            }
+        if (!mFragmentHelper.popFragment()){
+            super.onBackPressed()
         }
+    }
+
+    override fun onChangedFragment(fragment: BaseFragment) {
+
+    }
+
+    override fun onHideFragment(fragment: BaseFragment) {
+
     }
 }
